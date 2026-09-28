@@ -717,3 +717,19 @@ button.profile:hover{transform:translateY(-2px)}
 .pos1 .bub{right:calc(100% + 18px);bottom:auto;top:14px}
 .acts{right:150px}
 .tmr{right:36px;bottom:276px}
+
+/* サウンド設定 */
+.vols{display:grid;gap:14px}
+.vol{display:grid;grid-template-columns:150px 1fr 70px;align-items:center;gap:18px;padding:12px 18px;border-radius:14px;background:rgba(255,255,255,.04)}
+.vol span{font-size:26px}
+.vol b{font-family:var(--num);font-size:30px;text-align:right;color:var(--gold)}
+.vol input[type=range]{width:100%;height:44px;accent-color:var(--gold);cursor:pointer}
+.opt.mute{margin-top:14px}
+.vpick{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.vbtn{border:0;cursor:pointer;padding:16px 12px;border-radius:16px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);display:flex;flex-direction:column;align-items:center;gap:4px}
+.vbtn b{font-size:26px}
+.vbtn span{font-size:16px;color:var(--muted)}
+.vbtn.on{background:linear-gradient(180deg,rgba(242,207,115,.28),rgba(242,207,115,.08));box-shadow:inset 0 0 0 3px var(--gold)}
+.credit{margin-top:12px;font-size:16px;color:var(--muted)}
+.dropdown.sndd{width:620px;gap:12px}
+.sndd .vol{grid-template-columns:120px 1fr 60px}
