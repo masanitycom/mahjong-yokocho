@@ -84,10 +84,10 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .ft{position:relative;width:var(--tw);height:calc(var(--tw)*1.34);transform-style:preserve-3d;flex:none}
 .ft.side{width:calc(var(--tw)*1.34);height:var(--tw)}
 .ft > i{position:absolute;inset:0;border-radius:calc(var(--tw)*.14)}
-.ft .b{background:var(--back-d);box-shadow:0 2px 3px rgba(0,0,0,.45)}
+.ft .b{background:linear-gradient(180deg,var(--back),var(--back-d));box-shadow:0 2px 3px rgba(0,0,0,.45)}
 .ft .m{background:var(--back);transform:translateZ(calc(var(--tw)*.1))}
 .ft .s{background:var(--ivory-side);transform:translateZ(calc(var(--tw)*.2))}
-.ft .f{background:linear-gradient(170deg,#fffdf6,var(--ivory) 60%,var(--ivory2));transform:translateZ(calc(var(--tw)*.27));box-shadow:inset 0 0 0 1px rgba(255,255,255,.8)}
+.ft .f{background:linear-gradient(170deg,#fffdf6,var(--ivory) 60%,var(--ivory2));transform:translateZ(calc(var(--tw)*.24));border-bottom:calc(var(--tw)*.05) solid var(--ivory-side);box-shadow:inset 0 0 0 1px rgba(255,255,255,.8)}
 .ft.bkup .f{background:linear-gradient(170deg,var(--back),var(--back-d))}
 .ft.called{opacity:.28}
 .ft.tg .f{background:linear-gradient(170deg,#e9e3d3,#d9d0bb)}
