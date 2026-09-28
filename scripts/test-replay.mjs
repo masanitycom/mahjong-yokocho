@@ -1,6 +1,6 @@
 import { advance, submit } from '../lib/server/replay.js';
 const game = { seed: 12345, rules: { length: 'tonpuu', aka: true, kuitan: true, timer: true },
-  players: [{name:'A',human:true},{name:'B',human:false,style:'attack'},{name:'C',human:true},{name:'D',human:false}],
+  players: (process.argv[2]==='3'?[{name:'A',human:true},{name:'B',human:false,style:'attack'},{name:'C',human:true}]:[{name:'A',human:true},{name:'B',human:false,style:'attack'},{name:'C',human:true},{name:'D',human:false}]),
   log: {}, prompts: {}, eventCount: 0 };
 let steps = 0, t0 = Date.now(), maxMs = 0, maxView = 0;
 while (true) {
@@ -10,7 +10,7 @@ while (true) {
   for (const v of Object.values(r.views)) maxView = Math.max(maxView, JSON.stringify(v).length);
   // leak check: other hands hidden while active
   for (const [seat, v] of Object.entries(r.views)) {
-    if (v.h && v.h.active) for (let i = 1; i < 4; i++) if (v.h.hands[i].some(x => x !== -1)) throw new Error('LEAK seat ' + seat);
+    if (v.h && v.h.active) for (let i = 1; i < v.h.hands.length; i++) if (v.h.hands[i].some(x => x !== -1)) throw new Error('LEAK seat ' + seat);
   }
   if (r.done) { console.log('done', r.endReason, r.final.map(f => f.seat + ':' + f.score + '(' + f.pt + ')').join(' '), 'records', r.records.length); break; }
   const p = r.pending[0];

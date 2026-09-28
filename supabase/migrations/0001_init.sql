@@ -71,6 +71,7 @@ create table if not exists public.game_players (
   game_id uuid not null references public.games(id) on delete cascade,
   user_id uuid not null references public.profiles(id) on delete cascade,
   group_id uuid references public.groups(id) on delete set null,
+  mode smallint not null default 4,     -- 4=4人打ち 3=3人打ち
   seat int not null,
   rank int not null,
   score int not null,
@@ -92,6 +93,7 @@ create or replace view public.group_rankings as
 select
   gp.group_id,
   gp.user_id,
+  gp.mode,
   count(*)::int                          as games,
   sum(gp.pt)::numeric(10,1)              as total_pt,
   round(avg(gp.rank)::numeric, 2)        as avg_rank,
@@ -103,7 +105,7 @@ select
   max(gp.best_total)                     as best_total
 from public.game_players gp
 where gp.group_id is not null
-group by gp.group_id, gp.user_id;
+group by gp.group_id, gp.user_id, gp.mode;
 
 alter table public.profiles       enable row level security;
 alter table public.groups         enable row level security;

@@ -661,3 +661,10 @@ button.profile:hover{transform:translateY(-2px)}
 .waitmsg.small{font-size:24px}
 .waitmsg i{width:12px;height:12px;border-radius:50%;background:var(--gold);animation:pulse 1.2s ease-in-out infinite}
 .waitmsg i:nth-child(2){animation-delay:.2s}.waitmsg i:nth-child(3){animation-delay:.4s}
+
+/* 3人打ち */
+.ab.kita{background:linear-gradient(180deg,#9fd6ff,#3a8fd0 55%,#1d5c93)}
+.callw.kita{text-shadow:0 0 30px rgba(120,190,255,.95),0 6px 0 #1d4f73}
+.seats.three{grid-template-columns:repeat(3,1fr);left:220px;right:220px}
+.me .mymelds .meld.kita .t2{box-shadow:none}
+.rank-mode{display:flex;gap:10px;margin-bottom:14px}

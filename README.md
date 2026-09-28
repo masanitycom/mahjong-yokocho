@@ -1,6 +1,6 @@
 # 麻雀横丁
 
-仲間内で打てる4人打ち・3人打ち麻雀のWebサービス。
+仲間内で打てる4人打ち・3人打ち（三麻・北抜き）麻雀のWebサービス。
 部屋を立ててLINEで招待、成績はグループごとに記録される。
 
 - Next.js 15（App Router）＋ Supabase（Postgres / 匿名ログイン / Realtime）＋ Vercel

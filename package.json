@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test:engine": "node scripts/test-replay.mjs"
+    "test:engine": "node scripts/test-replay.mjs 4 && node scripts/test-replay.mjs 3 && node scripts/sim.mjs 3 20 && node scripts/sim.mjs 4 20"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",
