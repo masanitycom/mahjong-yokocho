@@ -44,6 +44,7 @@ create table if not exists public.rooms (
   seats jsonb not null,               -- 4席: {userId|null, cpu, name, style}
   game jsonb,                         -- {seed, players, log, prompts, eventCount}
   views jsonb,                        -- 席ごとの画面データ（サーバーが計算して保存）
+  chat jsonb not null default '[]'::jsonb,  -- 卓のチャット（最新50件）
   version int not null default 0,
   game_id uuid,
   created_at timestamptz not null default now(),
