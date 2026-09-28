@@ -55,6 +55,8 @@ npm run dev
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | anon キー |
 | `SUPABASE_SERVICE_ROLE_KEY` | service_role キー（公開しない） |
 | `NEXT_PUBLIC_SITE_URL` | 本番URL（LINE共有のサムネイル用） |
+| `CLOUDFLARE_TURN_KEY_ID` | 通話用。Cloudflare Realtime の TURN キーID（任意） |
+| `CLOUDFLARE_TURN_API_TOKEN` | 通話用。上のキーの API トークン（Secret、任意） |
 
 3. Deploy
 
@@ -71,3 +73,8 @@ npm run test:engine   # サーバー再生で1局通し、手牌が他人に漏�
   （アプリ内のホームと設定画面に表示している。各キャラクターの利用規約に従うこと）
 - BGM（`public/bgm/lobby.mp3` ホーム用、`public/bgm/table.mp3` 対局用）は自作（プログラムで作曲・合成）。
   同じファイル名で差し替えれば別の曲にできる。ループ用に曲の前後へ0.5秒ずつ「曲の末尾／頭」をつなげた形で書き出している
+
+## 通話
+
+卓の参加者同士を WebRTC で直接つなぐ（P2P、最大4人の音声のみ）。接続の合図は `/api/rpc` の `rtc` 操作で中継し、Supabase Realtime で相手に届ける。
+TURN の環境変数がない場合は STUN だけで接続する（一部のスマホ回線ではつながらないことがある）。
