@@ -683,3 +683,9 @@ button.profile:hover{transform:translateY(-2px)}
 .modepick small{margin-top:4px}
 
 .chipb.add{background:none;box-shadow:inset 0 0 0 2px rgba(242,207,115,.5);color:var(--gold)}
+
+.codejoin{margin-top:14px}
+.codejoin summary{cursor:pointer;font-size:20px;color:var(--muted);padding:8px 0;list-style:none}
+.codejoin summary::-webkit-details-marker{display:none}
+.codejoin summary::before{content:"＋ "}
+.codejoin[open] summary::before{content:"－ "}
