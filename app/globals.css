@@ -733,3 +733,12 @@ button.profile:hover{transform:translateY(-2px)}
 .credit{margin-top:12px;font-size:16px;color:var(--muted)}
 .dropdown.sndd{width:620px;gap:12px}
 .sndd .vol{grid-template-columns:120px 1fr 60px}
+
+/* ランキングの期間 */
+.pbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.pbar .chipb small{font-size:15px;margin-left:8px;padding:2px 8px;border-radius:8px;background:rgba(63,191,127,.25);color:#7ff0b0}
+.pbar .chipb.on small{background:rgba(0,0,0,.15);color:#2c2006}
+.psel{width:auto;height:64px;border-radius:32px;padding:0 20px;font-size:22px}
+.psel.on{box-shadow:inset 0 0 0 3px var(--gold);color:var(--gold)}
+.plabel{font-size:22px;color:var(--gold);margin:6px 0 12px}
+.season-form{padding:16px 20px;border-radius:16px;background:rgba(242,207,115,.08);box-shadow:inset 0 0 0 1px var(--line);margin-bottom:12px}

@@ -21,6 +21,7 @@ create table if not exists public.groups (
   name text not null,
   code text not null unique,          -- 招待コード（6桁英数）
   owner uuid not null references public.profiles(id) on delete cascade,
+  seasons jsonb not null default '[]'::jsonb,   -- 作成者が区切ったシーズン [{id,name,start}]
   created_at timestamptz not null default now()
 );
 
