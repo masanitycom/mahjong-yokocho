@@ -674,3 +674,10 @@ button.profile:hover{transform:translateY(-2px)}
 .sheet h2 .x{white-space:nowrap;flex:none}
 .logo h1{letter-spacing:.06em}
 .band b,.winword b{font-style:italic;letter-spacing:.02em}
+
+/* 卓の名前 */
+.tname{font-family:var(--brush);font-weight:900;font-size:44px;color:var(--gold);margin-bottom:10px;white-space:nowrap}
+.roundhud .tn{font-size:20px;color:var(--gold);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hrow .dt small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.modepick button{display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2}
+.modepick small{margin-top:4px}
