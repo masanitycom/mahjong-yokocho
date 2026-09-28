@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=Barlow+Condensed:wght@600;700&family=Yuji+Boku&display=swap" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=M+PLUS+1:wght@800;900&family=Barlow+Condensed:wght@600;700&display=swap" />
       </head>
       <body>{children}</body>
     </html>
