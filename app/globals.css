@@ -768,3 +768,15 @@ button.profile:hover{transform:translateY(-2px)}
 #compose .cm-last span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #compose .cm-last b{color:var(--text);margin-right:8px}
 #compose .cm-bg{flex:1;background:rgba(0,0,0,.35)}
+/* アイコン選び */
+.sheet.iconsheet{width:min(1240px,calc(100% - 80px))}
+.icongrid{display:grid;grid-template-columns:repeat(8,1fr);gap:18px 14px;margin-top:8px}
+.ic{border:0;background:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--ui);color:var(--muted);font-size:20px;font-weight:700}
+.ic img{width:118px;height:118px;border-radius:50%;display:block;box-shadow:0 0 0 3px rgba(255,255,255,.08),0 8px 18px rgba(0,0,0,.45);transition:transform .15s,box-shadow .15s}
+.ic:active img{transform:scale(.94)}
+.ic.on img{box-shadow:0 0 0 5px var(--gold),0 0 22px rgba(242,207,115,.55)}
+.ic.on span{color:var(--gold)}
+.ic-photo{display:flex;align-items:center;gap:18px;margin-top:26px}
+.av.chara{background:none!important}
+.pf-av{position:relative}
+.pf-new{position:absolute;left:50%;bottom:-14px;transform:translateX(-50%);white-space:nowrap;font-size:17px;font-weight:800;padding:4px 12px;border-radius:99px;background:linear-gradient(180deg,#fff0bf,var(--gold));color:#3b2a06;box-shadow:0 4px 10px rgba(0,0,0,.5);animation:pulse 1.6s ease-in-out infinite}
