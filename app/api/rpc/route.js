@@ -16,7 +16,7 @@ export async function POST(req) {
     const data = await fn(user, body.args || {});
     return Response.json(data);
   } catch (e) {
-    if (e instanceof ApiError) return Response.json({ error: e.message }, { status: e.status });
+    if (e instanceof ApiError) return Response.json({ error: e.message, code: e.code || undefined }, { status: e.status });
     console.error(e);
     return Response.json({ error: 'サーバーでエラーが起きました' }, { status: 500 });
   }

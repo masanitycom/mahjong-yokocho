@@ -36,7 +36,7 @@ npm run dev
 ### 1. Supabase
 
 1. 新しいプロジェクトを作る（リージョンは Tokyo）
-2. SQL Editor で `supabase/migrations/0001_init.sql` の中身を実行
+2. SQL Editor で `supabase/migrations/` の SQL を番号順（0001 → 0004）にすべて実行
 3. Authentication → Sign In / Providers → **Allow anonymous sign-ins** をオン
 4. Authentication → URL Configuration の Site URL に本番URL（例 `https://mahjong-yokocho.vercel.app`）を入れる
 5. Project Settings → API Keys で次の3つを控える
@@ -57,6 +57,7 @@ npm run dev
 | `NEXT_PUBLIC_SITE_URL` | 本番URL（LINE共有のサムネイル用） |
 | `CLOUDFLARE_TURN_KEY_ID` | 通話用。Cloudflare Realtime の TURN キーID（任意） |
 | `CLOUDFLARE_TURN_API_TOKEN` | 通話用。上のキーの API トークン（Secret、任意） |
+| `ADMIN_PASSWORD` | 運営管理画面（`/admin`）のパスワード（Secret） |
 
 3. Deploy
 
@@ -78,3 +79,15 @@ npm run test:engine   # サーバー再生で1局通し、手牌が他人に漏�
 
 卓の参加者同士を WebRTC で直接つなぐ（P2P、最大4人の音声のみ）。接続の合図は `/api/rpc` の `rtc` 操作で中継し、Supabase Realtime で相手に届ける。
 TURN の環境変数がない場合は STUN だけで接続する（一部のスマホ回線ではつながらないことがある）。
+
+## 主催者と運営管理画面
+
+- 卓を立てる・グループを作るには「主催者」になる必要がある。主催者には、運営が発行した主催者コード（`YK-XXXX-XXXX`）をアプリで入力してなる
+- 誘われて遊ぶ人はコード不要（URL・卓番号・グループの招待で参加）。主催者のグループのメンバーは、そのグループの卓なら立てられる
+- `0004_organizers.sql` を実行した時点で、すでにグループを作った人・卓を立てた人は自動で主催者になる。実行前は制限なしで今まで通り動く
+- `/admin`（`ADMIN_PASSWORD` でログイン）
+  - 概要：主催者数・プレイヤー数・対局数、日ごとの対局数、よく遊ばれているルール、よく遊んでいる主催者
+  - 主催者：一覧と詳細（グループ、プレイヤーごとの合計pt・平均順位・トップ率などの成績、ルールの傾向、最近の対局）。期間は通算・30日・月ごと。利用の停止／再開、運営メモ。CSV保存
+  - 主催者コード：発行（メモ・使える人数・有効期限・枚数）、使った人の確認、無効化
+  - 対局：主催者・期間で絞り込み、CSV保存
+- ローカル検証モードではパスワード `dev`。デモデータは `/api/admin` の `seedDemo` 操作で入れられる（メモリ保存のときだけ）

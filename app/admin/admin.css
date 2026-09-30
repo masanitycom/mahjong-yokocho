@@ -1,0 +1,217 @@
+/* 運営管理画面（/admin）。ゲーム側の body 設定（スクロール禁止など）の上に、独立したスクロール領域を作る */
+.adm{
+  --bg:#0a0e10; --panel:#11181b; --panel2:#162024; --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+  --text:#edf2ef; --muted:#8fa19d; --gold:#f2cf73; --gold2:#c9a24a; --plus:#57c98f; --minus:#ef7a6c;
+  position:fixed; inset:0; overflow-y:auto; -webkit-overflow-scrolling:touch; background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(242,207,115,.07), transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, rgba(60,140,110,.08), transparent 60%), var(--bg);
+  color:var(--text); font-family:'M PLUS Rounded 1c',system-ui,sans-serif; font-weight:500; font-size:14px; line-height:1.5;
+  user-select:text; -webkit-user-select:text;
+}
+.adm *{box-sizing:border-box}
+.adm .x-num{font-family:'Barlow Condensed','M PLUS Rounded 1c',sans-serif; font-weight:700; font-variant-numeric:tabular-nums; letter-spacing:.01em}
+.adm button{font:inherit; color:inherit; cursor:pointer}
+.adm .mu{color:var(--muted)}
+.adm .x-plus{color:var(--plus)} .adm .x-minus{color:var(--minus)}
+
+/* 上部バー */
+.adm .top{position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:24px; padding:0 28px; height:64px;
+  background:rgba(10,14,16,.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+.adm .brand,.adm .alogo{font-family:'M PLUS 1',sans-serif; font-weight:900; font-size:22px; letter-spacing:.04em;
+  background:linear-gradient(180deg,#fff3c4,var(--gold) 50%,var(--gold2)); -webkit-background-clip:text; background-clip:text; color:transparent; white-space:nowrap}
+.adm .brand small,.adm .alogo small{font-family:'M PLUS Rounded 1c'; font-weight:700; font-size:12px; margin-left:10px; color:var(--muted); -webkit-text-fill-color:var(--muted); letter-spacing:.1em}
+.adm nav{display:flex; gap:4px; flex:1; overflow-x:auto; scrollbar-width:none}
+.adm nav::-webkit-scrollbar{display:none}
+.adm nav button{border:0; background:none; padding:10px 16px; border-radius:10px; color:var(--muted); font-weight:700; white-space:nowrap}
+.adm nav button:hover{color:var(--text); background:rgba(255,255,255,.04)}
+.adm nav button.x-on{color:#2b1f05; background:linear-gradient(180deg,#fff0bf,var(--gold))}
+.adm .out{border:0; background:none; color:var(--muted); font-size:13px; white-space:nowrap}
+.adm .out:hover{color:var(--text)}
+
+.adm .main{max-width:1240px; margin:0 auto; padding:28px 28px 80px; display:flex; flex-direction:column; gap:20px}
+.adm .card{background:linear-gradient(180deg,var(--panel2),var(--panel)); border:1px solid var(--line); border-radius:18px; padding:22px 24px; min-width:0}
+.adm h3{margin:0 0 16px; font-size:16px; font-weight:800; display:flex; align-items:baseline; gap:10px}
+.adm h3 small{font-size:12px; color:var(--muted); font-weight:500}
+.adm h4{margin:0 0 10px; font-size:13px; color:var(--muted); font-weight:700}
+.adm .two{display:grid; grid-template-columns:1fr 1fr; gap:20px}
+.adm .x-bar{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap}
+.adm .x-bar h3{margin:0}
+.adm .card > .x-bar{margin-bottom:16px}
+.adm .loading,.adm .x-empty{padding:36px 12px; text-align:center; color:var(--muted)}
+.adm .err{padding:14px 16px; border-radius:12px; background:rgba(239,122,108,.12); color:#ffb3a8; border:1px solid rgba(239,122,108,.3)}
+
+/* 入力・ボタン */
+.adm .ainp{height:40px; padding:0 14px; border-radius:10px; border:1px solid var(--line2); background:#0b1113; color:var(--text); font:inherit; outline:none; min-width:0}
+.adm .ainp:focus{border-color:var(--gold2); box-shadow:0 0 0 3px rgba(242,207,115,.15)}
+.adm .x-sel{padding-right:30px; appearance:none; background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
+  background-position:calc(100% - 16px) 17px,calc(100% - 11px) 17px; background-size:5px 5px; background-repeat:no-repeat}
+.adm .btn{height:40px; padding:0 18px; border:0; border-radius:10px; font-weight:800; white-space:nowrap; color:#2b1f05; background:linear-gradient(180deg,#fff0bf,var(--gold) 55%,var(--gold2)); box-shadow:0 4px 14px rgba(242,207,115,.18)}
+.adm .btn:disabled{opacity:.45; cursor:default}
+.adm .btn.x-sub{color:var(--text); background:rgba(255,255,255,.07); box-shadow:inset 0 0 0 1px var(--line2)}
+.adm .btn.x-ghost{color:var(--muted); background:none; box-shadow:inset 0 0 0 1px var(--line2)}
+.adm .btn.danger{color:#ffd9d3; background:rgba(239,122,108,.16); box-shadow:inset 0 0 0 1px rgba(239,122,108,.45)}
+.adm .btn.x-mini{height:30px; padding:0 12px; font-size:12px}
+.adm .link{border:0; background:none; padding:0; color:var(--gold); font-weight:700; text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgba(242,207,115,.35)}
+.adm .back{align-self:flex-start; border:0; background:none; color:var(--muted); padding:0; font-weight:700}
+.adm .back:hover{color:var(--text)}
+.adm .seg{display:flex; gap:6px; align-items:center; flex-wrap:wrap}
+.adm .seg > button{height:36px; padding:0 14px; border-radius:999px; border:1px solid var(--line2); background:none; color:var(--muted); font-weight:700}
+.adm .seg > button.x-on{color:#2b1f05; border-color:transparent; background:var(--gold)}
+.adm .seg .ainp{height:36px; border-radius:999px}
+.adm .filters{display:flex; gap:8px; flex-wrap:wrap}
+
+/* 指標 */
+.adm .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px}
+.adm .kpi{display:flex; flex-direction:column; gap:2px; padding:18px 20px; border-radius:16px; background:linear-gradient(160deg,rgba(242,207,115,.09),rgba(255,255,255,.02) 60%); border:1px solid var(--line)}
+.adm .kpi span{font-size:12px; color:var(--muted); font-weight:700}
+.adm .kpi b{font-size:44px; line-height:1.05; color:#fff}
+.adm .kpi small{font-size:12px; color:var(--muted)}
+.adm .pill{display:inline-block; padding:2px 10px; border-radius:999px; font-size:12px; font-weight:800; white-space:nowrap}
+.adm .pill.ok{background:rgba(87,201,143,.14); color:#8fe3b6; box-shadow:inset 0 0 0 1px rgba(87,201,143,.35)}
+.adm .pill.ng{background:rgba(239,122,108,.14); color:#ffb3a8; box-shadow:inset 0 0 0 1px rgba(239,122,108,.35)}
+.adm .pill.mu{background:rgba(255,255,255,.06); color:var(--muted)}
+
+/* 棒グラフ */
+.adm .bars{position:relative; padding:4px 0 26px 30px}
+.adm .bars .grid{position:absolute; inset:4px 0 26px 30px; display:flex; flex-direction:column; justify-content:space-between; pointer-events:none}
+.adm .bars .grid div{border-top:1px solid var(--line); position:relative}
+.adm .bars .grid span{position:absolute; left:-30px; top:-8px; width:24px; text-align:right; font-size:11px; color:var(--muted)}
+.adm .bars .cols{position:relative; height:100%; display:flex; align-items:flex-end; gap:3px}
+.adm .bars .col{position:relative; flex:1; height:100%; border:0; padding:0; background:none; display:flex; align-items:flex-end; outline:none}
+.adm .bars .col i{display:block; width:100%; min-height:2px; border-radius:4px 4px 0 0; background:var(--gold); opacity:.78; transition:opacity .12s}
+.adm .bars .col.x-on i,.adm .bars .col:hover i{opacity:1}
+.adm .bars .col em{position:absolute; top:100%; left:50%; transform:translateX(-50%); margin-top:6px; font-style:normal; font-size:11px; color:var(--muted); white-space:nowrap}
+.adm .bars .tip{position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%); z-index:2; padding:6px 10px; border-radius:10px; background:#f6f1e3; color:#1c1a14; font-size:12px; font-weight:700; white-space:nowrap; box-shadow:0 8px 20px rgba(0,0,0,.45); pointer-events:none}
+.adm .bars .tip b{font-size:18px; margin-right:2px}
+.adm .bars .tip small{display:block; font-size:11px; color:#6b6555}
+.adm .bars .col:first-child .tip{left:0; transform:none}
+.adm .bars .col:last-child .tip{left:auto; right:0; transform:none}
+
+/* ルール */
+.adm .rules{display:grid; grid-template-columns:1.2fr 1fr; gap:24px}
+.adm .meters{display:flex; flex-direction:column; gap:12px}
+.adm .meter{display:grid; grid-template-columns:84px 1fr 44px; align-items:center; gap:10px; font-size:13px}
+.adm .meter span{color:var(--muted); font-weight:700}
+.adm .meter div{height:8px; border-radius:4px; background:rgba(255,255,255,.07); overflow:hidden}
+.adm .meter i{display:block; height:100%; border-radius:4px; background:var(--gold)}
+.adm .meter b{text-align:right; font-size:16px}
+.adm .uma{display:flex; align-items:baseline; gap:6px; padding:7px 0; border-bottom:1px solid var(--line); font-size:13px}
+.adm .uma span{flex:1}
+.adm .uma b{font-size:17px}
+.adm .uma small{color:var(--muted)}
+
+/* 主催者ランキング（概要） */
+.adm .rank{display:flex; flex-direction:column}
+.adm .rrow{display:flex; align-items:baseline; gap:12px; padding:10px 6px; border:0; border-bottom:1px solid var(--line); background:none; text-align:left; border-radius:8px}
+.adm .rrow:hover{background:rgba(255,255,255,.03)}
+.adm .rrow .x-n{width:22px; color:var(--gold); font-size:18px}
+.adm .rrow .x-nm{flex:1; font-weight:700}
+.adm .rrow b{font-size:20px}
+.adm .rrow small{color:var(--muted)}
+
+/* 表 */
+.adm .x-tbl{display:flex; flex-direction:column}
+.adm .x-tr{display:grid; align-items:center; gap:14px; padding:12px 10px; border:0; border-bottom:1px solid var(--line); background:none; text-align:left; width:100%; border-radius:0}
+.adm .x-tr.x-th{padding-top:0; font-size:12px; color:var(--muted); font-weight:700}
+.adm .x-tr.click:hover{background:rgba(255,255,255,.03)}
+.adm .x-tr .x-r{text-align:right}
+.adm .x-tr .strong{font-size:17px}
+.adm .x-tr small{display:block; font-size:12px; color:var(--muted); font-weight:500}
+.adm .x-tr b{font-weight:800}
+.adm .x-tr .x-num{font-size:15px}
+.adm .x-who{display:flex; align-items:center; gap:10px; min-width:0}
+.adm .x-who > span{min-width:0}
+.adm .x-who b{display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.adm .aav{border-radius:50%; object-fit:cover; flex:none; background:#222; box-shadow:0 0 0 2px rgba(242,207,115,.25)}
+.adm .aav.aini{display:inline-grid; place-items:center; color:#fff; font-weight:800; background:radial-gradient(circle at 35% 30%,#d9b45a,#6e5220)}
+.adm .orgs .x-tr{grid-template-columns:minmax(200px,2.2fr) 80px 70px 80px 60px 80px 90px}
+.adm .ranking .x-tr{grid-template-columns:32px minmax(140px,2fr) repeat(8,minmax(56px,1fr))}
+.adm .ranking .x-n1{color:var(--gold)} .adm .ranking .x-n2{color:#d6dbe2} .adm .ranking .x-n3{color:#d49a6a}
+.adm .groups .x-tr{grid-template-columns:2fr 1fr 80px 120px 110px}
+.adm .codes .x-tr{grid-template-columns:150px 1.4fr 60px 90px 90px 1.4fr 100px}
+.adm .games .x-tr{grid-template-columns:90px 1.1fr 1.2fr minmax(280px,2.4fr)}
+.adm .games .x-tr:has(> :nth-child(5)){grid-template-columns:90px 110px 1.1fr 1.2fr minmax(280px,2.4fr)}
+.adm .x-dt{font-size:14px!important}
+.adm .rl{font-weight:700}
+.adm .gres{display:flex; flex-wrap:wrap; gap:6px 8px}
+.adm .gres .x-r{display:inline-flex; align-items:baseline; gap:5px; padding:3px 9px 3px 4px; border-radius:999px; background:rgba(255,255,255,.05); font-size:12px; font-weight:700; text-align:left}
+.adm .gres .x-r em{display:inline-grid; place-items:center; width:18px; height:18px; border-radius:50%; font-style:normal; font-size:11px; background:rgba(255,255,255,.1)}
+.adm .gres .x-r1 em{background:var(--gold); color:#2b1f05}
+.adm .gres .x-r small{display:inline; font-size:10px}
+.adm .gres .x-r b{font-size:14px}
+.adm .code{border:0; background:rgba(255,255,255,.05); padding:3px 10px; border-radius:8px; font-size:15px; letter-spacing:.04em}
+.adm .code:hover{background:rgba(242,207,115,.14)}
+.adm small.ok{color:var(--plus)}
+.adm .users{display:flex; flex-wrap:wrap; gap:4px 10px}
+
+/* コード発行 */
+.adm .issue{display:grid; grid-template-columns:2fr 1fr 1fr 1fr auto; gap:12px; align-items:end}
+.adm .issue label{display:flex; flex-direction:column; gap:6px; min-width:0}
+.adm .issue label span{font-size:12px; color:var(--muted); font-weight:700}
+.adm .fresh{margin-top:18px; padding:16px 18px; border-radius:14px; background:rgba(242,207,115,.07); border:1px dashed rgba(242,207,115,.4); display:flex; flex-direction:column; gap:12px; align-items:flex-start}
+.adm .fcodes{display:flex; flex-wrap:wrap; gap:10px}
+.adm .fcode{display:flex; align-items:baseline; gap:10px; border:1px solid rgba(242,207,115,.45); background:#0b1113; border-radius:10px; padding:8px 14px; font-size:22px; letter-spacing:.06em; color:#fff}
+.adm .fcode small{font-family:'M PLUS Rounded 1c'; font-size:11px; color:var(--gold); letter-spacing:0}
+
+/* 主催者の詳細 */
+.adm .head{display:flex; align-items:center; gap:20px}
+.adm .hinfo{flex:1; min-width:0; display:flex; flex-direction:column; gap:6px}
+.adm .hname{display:flex; align-items:center; gap:12px}
+.adm .hname b{font-size:24px; font-weight:800}
+.adm .note{display:flex; gap:8px; margin-top:4px}
+.adm .note .ainp{flex:1}
+
+/* ログイン */
+.adm .login{min-height:100%; display:grid; place-items:center; padding:24px}
+.adm .lcard{width:min(380px,100%); display:flex; flex-direction:column; gap:14px; padding:34px 30px; border-radius:22px; background:linear-gradient(180deg,var(--panel2),var(--panel)); border:1px solid var(--line); box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.adm .lcard .alogo{font-size:32px; text-align:center; margin-bottom:8px}
+.adm .lcard .alogo small{display:block; margin:6px 0 0}
+.adm .lcard .ainp,.adm .lcard .btn{height:46px}
+
+/* スマホ */
+@media (max-width:820px){
+  .adm .top{flex-wrap:wrap; gap:0 12px; padding:8px 12px 6px; height:auto}
+  .adm .brand{flex:1; font-size:20px}
+  .adm .brand small{display:none}
+  .adm nav{order:3; flex:1 1 100%; margin:6px -4px 0}
+  .adm nav button{padding:8px 12px; font-size:14px}
+  .adm .note .ainp{flex:none; width:100%}
+  .adm .head .aav{width:56px!important; height:56px!important}
+  .adm .main{padding:16px 12px 60px; gap:14px}
+  .adm .card{padding:16px 14px; border-radius:16px}
+  .adm .two,.adm .rules{grid-template-columns:1fr}
+  .adm .kpis{grid-template-columns:1fr 1fr; gap:10px}
+  .adm .kpi{padding:14px}
+  .adm .kpi b{font-size:34px}
+  .adm .issue{grid-template-columns:1fr 1fr}
+  .adm .issue label:first-child,.adm .issue .btn{grid-column:1/-1}
+  .adm .head{flex-wrap:wrap}
+  .adm .hact{width:100%}
+  .adm .note{flex-direction:column}
+  /* 表はカード型に */
+  .adm .x-tr.x-th{display:none}
+  .adm .x-tbl .x-tr{grid-template-columns:1fr 1fr!important; gap:6px 12px; padding:14px 6px}
+  .adm .x-tbl .x-tr > :first-child{grid-column:1/-1}
+  .adm .x-tr .x-r{text-align:left}
+  .adm .orgs .x-tr > :nth-child(3)::before{content:'グループ '} .adm .orgs .x-tr > :nth-child(4)::before{content:'30日 '}
+  .adm .orgs .x-tr > :nth-child(5)::before{content:'通算 '} .adm .orgs .x-tr > :nth-child(6)::before{content:'プレイヤー '}
+  /* 成績：1行目に 順位・名前・合計pt、2行目に細かい数字 */
+  .adm .ranking .x-tr{display:flex!important; flex-wrap:wrap; align-items:center; gap:4px 14px}
+  .adm .ranking .x-tr.x-th{display:none!important}
+  .adm .ranking .x-tr > :first-child{width:20px; flex:none}
+  .adm .ranking .x-tr > :nth-child(2){flex:1 1 calc(100% - 160px); min-width:0}
+  .adm .ranking .x-tr > :nth-child(4){order:-1; margin-left:auto}
+  .adm .ranking .x-tr > :nth-child(2){order:-2} .adm .ranking .x-tr > :first-child{order:-3}
+  .adm .ranking .x-tr > :nth-child(4)::before{content:''!important}
+  .adm .ranking .x-tr > :nth-child(4){font-size:20px!important}
+  .adm .ranking .x-tr > :nth-child(n+5), .adm .ranking .x-tr > :nth-child(3){font-size:13px!important; padding-left:0}
+  .adm .ranking .x-tr > :nth-child(3){margin-left:34px}
+  .adm .ranking .x-tr > :nth-child(3)::before{content:'対局 '} .adm .ranking .x-tr > :nth-child(4)::before{content:'合計 '}
+  .adm .ranking .x-tr > :nth-child(5)::before{content:'平均順位 '} .adm .ranking .x-tr > :nth-child(6)::before{content:'トップ '}
+  .adm .ranking .x-tr > :nth-child(7)::before{content:'ラス '} .adm .ranking .x-tr > :nth-child(8)::before{content:'和了 '}
+  .adm .ranking .x-tr > :nth-child(9)::before{content:'放銃 '} .adm .ranking .x-tr > :nth-child(10)::before{content:'最高 '}
+  .adm .x-tr [class*="num"]::before{font-family:'M PLUS Rounded 1c'; font-size:11px; color:var(--muted); font-weight:700; margin-right:4px}
+  .adm .games .x-tr > :last-child,.adm .codes .x-tr > :nth-child(6){grid-column:1/-1}
+  .adm .groups .x-tr > :nth-child(3)::before{content:'メンバー '} .adm .groups .x-tr > :nth-child(4)::before{content:'対局 '}
+  .adm .codes .x-tr > :nth-child(3)::before{content:'使用 '}
+}
