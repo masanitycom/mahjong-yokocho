@@ -770,9 +770,9 @@ button.profile:hover{transform:translateY(-2px)}
 #compose .cm-bg{flex:1;background:rgba(0,0,0,.35)}
 /* アイコン選び */
 .sheet.iconsheet{width:min(1240px,calc(100% - 80px))}
-.icongrid{display:grid;grid-template-columns:repeat(8,1fr);gap:18px 14px;margin-top:8px}
+.icongrid{display:grid;grid-template-columns:repeat(9,1fr);gap:18px 14px;margin-top:8px}
 .ic{border:0;background:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--ui);color:var(--muted);font-size:20px;font-weight:700}
-.ic img{width:118px;height:118px;border-radius:50%;display:block;box-shadow:0 0 0 3px rgba(255,255,255,.08),0 8px 18px rgba(0,0,0,.45);transition:transform .15s,box-shadow .15s}
+.ic img{width:112px;height:112px;border-radius:50%;display:block;box-shadow:0 0 0 3px rgba(255,255,255,.08),0 8px 18px rgba(0,0,0,.45);transition:transform .15s,box-shadow .15s}
 .ic:active img{transform:scale(.94)}
 .ic.on img{box-shadow:0 0 0 5px var(--gold),0 0 22px rgba(242,207,115,.55)}
 .ic.on span{color:var(--gold)}
